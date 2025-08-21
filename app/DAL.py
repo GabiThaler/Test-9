@@ -1,12 +1,20 @@
 from pymongo import MongoClient
 
-# חיבור למסד
-client = MongoClient("mongodb+srv://IRGC:iraniraniran@iranmaldb.gurutam.mongodb.net/")
-db = client["IranMalDB"]
-collection = db["tweets"]
 
-documents = collection.find()
 
-# מעבר על המסמכים והדפסה
-for doc in documents:
-    print(doc)
+class DAL:
+    # חיבור למסד
+    def __init__(self):
+        self.client = MongoClient("mongodb+srv://IRGC:iraniraniran@iranmaldb.gurutam.mongodb.net/")
+        self.db = self.client["IranMalDB"]
+        self.collection = self.db["tweets"]
+    #
+        self.documents = self.collection.find()
+
+    # מעבר על המסמכים והדפסה
+    def print_all_data(self):
+        for doc in self.documents:
+            print(doc)
+
+        return self.documents
+

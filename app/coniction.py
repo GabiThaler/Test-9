@@ -2,7 +2,9 @@ from pymongo import MongoClient
 
 class DAL_mongo:
 
-    def _init_(self, host, database, collection, user= None, password= None):
+
+
+    def __init__(self, host, database, collection, user= None, password= None):
         self.host = host
         self.database = database
         self.collection = collection
@@ -23,8 +25,7 @@ class DAL_mongo:
     def open_connection(self):
         try:
             self.client = MongoClient(self.URI)
-            print("Connection established")
-            return True
+            return "Connection established"
         except Exception as e:
             print("Error: ", e)
             return False
@@ -35,3 +36,5 @@ class DAL_mongo:
     def close_connection(self):
         if self.client:
             self.client.close()
+            return True
+
